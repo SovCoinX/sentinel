@@ -45,6 +45,17 @@ def sqlite_test_db_name(sqlite_file_path):
     return test_sqlite_file_path
 
 
+def db_dir_exists():
+    if not os.path.exists(os.path.dirname(sentinel_cfg.get('db_name', 'sentinel'))):
+        # create database dirctory if it doesnt already exist
+        os.makedirs(os.path.dirname(sentinel_cfg.get('db_name', 'sentinel')))
+        db_created = True
+    else:
+        db_created = True
+
+    return db_created
+
+
 def get_db_conn():
     import peewee
     env = os.environ.get('SENTINEL_ENV', 'production')
@@ -91,4 +102,5 @@ def get_db_conn():
 sov_conf = get_sov_conf()
 network = get_network()
 rpc_host = get_rpchost()
+db_dir_exists = db_dir_exists()
 db = get_db_conn()

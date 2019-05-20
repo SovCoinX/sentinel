@@ -34,7 +34,7 @@ class SovereignConfig():
         creds = {key: value for (key, value) in match}
 
         # standard Sovereign defaults...
-        default_port = 7207 if (network == 'mainnet') else 17207
+        default_port = 3322 if (network == 'mainnet') else 13385
 
         # use default port for network if not specified in sov.conf
         if not ('port' in creds):
